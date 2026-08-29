@@ -32,6 +32,14 @@ from pathlib import Path
 if sys.version_info < (3, 10):
     sys.exit("需要 Python 3.10 或更高版本")
 
+# 控制台编码不是 UTF-8 时（如 Windows CI 的 PowerShell），避免中文输出报错
+for _stream in (sys.stdout, sys.stderr):
+    if _stream and hasattr(_stream, "reconfigure"):
+        try:
+            _stream.reconfigure(encoding="utf-8")
+        except (ValueError, OSError):
+            pass
+
 ENCODING = "utf-8"
 TODAY = datetime.date.today().isoformat()
 

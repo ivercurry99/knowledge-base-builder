@@ -3,17 +3,36 @@
 </p>
 
 <p align="center">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-8a5cf5">
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-50a0fa">
+  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-8a5cf5"></a>
+  <a href="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-50a0fa?logo=python&logoColor=white">
   <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-4a4a52">
   <img alt="Network" src="https://img.shields.io/badge/network-not%20required-2ea043">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivercurry99/knowledge-base-builder?color=50a0fa">
+  <img alt="Stars" src="https://img.shields.io/github/stars/ivercurry99/knowledge-base-builder?style=social">
 </p>
 
-**English**: [README.en.md](./README.en.md) · **中文**: README.md
+<p align="center"><b>English</b>: <a href="./README.en.md">README.en.md</a> · <b>中文</b>: README.md</p>
 
-知识库搭建器（Knowledge Base Builder）是一个 Agent 通用的 Skill：引导你 3 分钟搭出一个结构化的「第二大脑」知识库。任何具备「读写文件 + 提问」能力的 Agent 都能执行。
+---
 
-你不用懂任何知识管理理论，说一句「帮我搭知识库」，它就会问你几个问题，然后用脚本确定地生成一套结构——不会漏目录、不会重复建，信息没想好也有默认值，不卡你。
+知识库搭建器（Knowledge Base Builder）是一个 **Agent 通用的 Skill**：引导你 3 分钟搭出一个结构化的「第二大脑」知识库。任何具备「读写文件 + 提问」能力的 Agent 都能执行。
+
+你不用懂任何知识管理理论，说一句「帮我搭知识库」，它就会问你几个问题，然后用脚本确定地生成一套结构——**不会漏目录、不会重复建，信息没想好也有默认值，不卡你**。
+
+## 目录
+
+- [生成的结构长这样](#生成的结构长这样)
+- [它解决了什么问题](#它解决了什么问题)
+- [特性](#特性)
+- [快速开始](#快速开始)
+- [一个完整示例](#一个完整示例)
+- [数据与边界](#数据与边界)
+- [兼容性](#兼容性)
+- [设计思路](#设计思路)
+- [开发与验证](#开发与验证)
+- [致谢与商标声明](#致谢与商标声明)
+- [License](#license)
 
 ## 生成的结构长这样
 
@@ -38,6 +57,15 @@
 
 其中 `90-你的大脑说明/` 一次生成 6 个文件：`README`（说明书）、`个人档案`（你的画像）、`agents`（操作约束）、`初始化提示词`（换新会话秒接上，含沉淀流程 / 升格三标准 / 门禁）、`文件追踪`（改文件自动修链接）、`备份方案`。AI 协作前先读这里。
 
+## 它解决了什么问题
+
+| 没 skill 时 | 用了 skill 后 |
+|------------|---------------|
+| 想搭知识库，不知道从哪开始 | 一句话，问几个问题就生成完整结构 |
+| 手工建目录，容易漏 / 重复 / 起名纠结 | 脚本确定性生成，幂等不覆盖 |
+| Agent 不知道怎么帮你 / 你不知道问 Agent 什么 | 自带 `90-大脑说明` 入口，AI 知道你是谁、怎么协作 |
+| 信息没想好就卡住 | 每项都有默认值，不卡你 |
+
 ## 特性
 
 - ✅ **通用**：核心流程只用「读写文件 + 提问」，不依赖任何特定 Agent 的专有功能
@@ -45,29 +73,45 @@
 - ✅ **稳定**：骨架由脚本确定性生成，已存在结构时拒绝覆盖
 - ✅ **结构化**：Inbox → Areas → Projects → Output 四层流转，知识可沉淀可复用
 
-## 安装
+## 快速开始
 
-告诉 Agent：
+**方式 1：让 Agent 安装**
+
+告诉你的 Agent：
 
 ```text
 帮我安装「https://github.com/ivercurry99/knowledge-base-builder」这个 Skill。
 ```
 
-或使用命令：
+**方式 2：用命令安装**
 
 ```shell
 npx skills add ivercurry99/knowledge-base-builder
 ```
 
-## 使用
-
-安装后，对你的 Agent 说：
+**安装后**，对你的 Agent 说：
 
 ```text
 帮我搭知识库
 ```
 
-然后跟着引导回答几个问题即可。完整示例见 [`examples/数据分析师示例.md`](examples/数据分析师示例.md)——一个「数据分析师」用本 skill 搭建出来的知识库长什么样。
+然后跟着引导回答几个问题即可。详细参数见 [`SKILL.md`](./SKILL.md)，完整示例见 [`examples/数据分析师示例.md`](examples/数据分析师示例.md)。
+
+## 一个完整示例
+
+「数据分析师」用本 skill 搭建出来的知识库长什么样——见 [`examples/数据分析师示例.md`](examples/数据分析师示例.md)。
+
+节选目录树：
+
+```text
+小陈的知识库/
+├── 00-Inbox/资源/  00-Inbox/灵感/  00-Inbox/待沉淀/{领域}/
+├── 10-Areas/数据分析/{1-业务理解, 2-分析思维, ...}
+├── 20-Projects/{ing, done, wait}
+├── 30-Output/{ing, done, wait}
+├── 40-Skills/README.md
+└── 90-小陈的大脑说明/{README, 个人档案, agents, 初始化提示词, 文件追踪, 备份方案}
+```
 
 ## 数据与边界
 
@@ -94,7 +138,7 @@ npx skills add ivercurry99/knowledge-base-builder
 - 做项目放 Projects，对外输出放 Output
 - 每层有明确的作用，不混在一起
 
-分层思路参考了 Tiago Forte 的 PARA 方法（Projects / Areas / Resources / Archives）与「第二大脑」理念；本项目在其基础上调整了分层与流转规则，独立实现，与 Forte Labs 无关联。
+完整设计思路见 [`references/design-principles.md`](references/design-principles.md)。
 
 ## 开发与验证
 
@@ -103,6 +147,14 @@ npx skills add ivercurry99/knowledge-base-builder
 python -m unittest discover -s tests -v
 ```
 
+CI 在 macOS / Windows / Linux 三平台同步跑这套测试，跨平台一致性是项目硬指标。
+
+## 致谢与商标声明
+
+- 本项目的分层思路参考了 Tiago Forte 提出的 **PARA 方法**（Projects / Areas / Resources / Archives）与「**第二大脑**」理念。**本项目在其基础上调整了分层与流转规则，独立实现，与 Tiago Forte、Forte Labs 无任何关联、合作或背书关系**。「Second Brain」「PARA」是各自持有人的商标，本仓库仅在概念上引用，不主张任何权利。
+- 截图示例中的软件是 **Obsidian**（`obsidian.md`），其名称和标识是 Obsidian MD Inc. 的商标；本仓库仅以事实方式指代该软件，用于展示知识库打开效果，不主张任何权利。
+- 感谢所有在「数字花园」「第二大脑」话题上公开分享过自己实践的人——这个项目正是站在这些讨论上做出来的工程化版本。
+
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) · Copyright © 2026 [ivercurry99](https://github.com/ivercurry99)

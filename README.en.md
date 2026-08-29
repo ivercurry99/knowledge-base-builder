@@ -3,17 +3,36 @@
 </p>
 
 <p align="center">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-8a5cf5">
-  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-50a0fa">
+  <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-8a5cf5"></a>
+  <a href="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml/badge.svg"></a>
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-50a0fa?logo=python&logoColor=white">
   <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-4a4a52">
   <img alt="Network" src="https://img.shields.io/badge/network-not%20required-2ea043">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivercurry99/knowledge-base-builder?color=50a0fa">
+  <img alt="Stars" src="https://img.shields.io/github/stars/ivercurry99/knowledge-base-builder?style=social">
 </p>
 
-**English**: README.en.md · **中文**: [README.md](./README.md)
+<p align="center"><b>English</b>: README.en.md · <b>中文</b>: <a href="./README.md">README.md</a></p>
 
-Knowledge Base Builder is an agent-agnostic Skill that guides you to scaffold a structured "second brain" knowledge base in about 3 minutes. Any agent with "read/write files + ask questions" capabilities can run it.
+---
 
-You don't need any knowledge-management theory. Say "help me build a knowledge base", answer a few questions, and it generates a structure deterministically with a script — no missing folders, no duplicates, sensible defaults when you don't have an answer yet.
+Knowledge Base Builder is an **agent-agnostic Skill** that guides you to scaffold a structured "second brain" knowledge base in about 3 minutes. Any agent with "read/write files + ask questions" capabilities can run it.
+
+You don't need any knowledge-management theory. Say "help me build a knowledge base", answer a few questions, and it generates a structure deterministically with a script — **no missing folders, no duplicates, sensible defaults when you don't have an answer yet**.
+
+## Table of contents
+
+- [What the result looks like](#what-the-result-looks-like)
+- [What problem it solves](#what-problem-it-solves)
+- [Features](#features)
+- [Quick start](#quick-start)
+- [A full example](#a-full-example)
+- [Data & boundaries](#data--boundaries)
+- [Compatibility](#compatibility)
+- [Design](#design)
+- [Development](#development)
+- [Acknowledgments & trademarks](#acknowledgments--trademarks)
+- [License](#license)
 
 ## What the result looks like
 
@@ -38,6 +57,15 @@ You don't need any knowledge-management theory. Say "help me build a knowledge b
 
 The brain folder (`90-your-brain/`) comes with 6 files at once: `README` (manual), `个人档案` (your profile), `agents` (operating constraints), `初始化提示词` (a full reset prompt covering the digestion workflow, promotion criteria, and gates), `文件追踪` (link auto-fix on file moves), and `备份方案` (backup plan). The agent reads this first.
 
+## What problem it solves
+
+| Without this skill | With this skill |
+|--------------------|-----------------|
+| Want a knowledge base, don't know where to start | One sentence, a few questions, done |
+| Hand-creating folders — easy to miss / duplicate / agonize over names | Scripted, deterministic, idempotent, refuses to overwrite |
+| Agent doesn't know how to help / you don't know what to ask | Ships a `90-your-brain` entry so the AI knows who you are |
+| Stuck when info is incomplete | Every field has a default, never blocks |
+
 ## Features
 
 - ✅ **Universal**: the core flow only needs "read/write files + ask questions", no host-specific features
@@ -45,7 +73,9 @@ The brain folder (`90-your-brain/`) comes with 6 files at once: `README` (manual
 - ✅ **Stable**: the skeleton is generated deterministically by a script and refuses to overwrite existing structures
 - ✅ **Structured**: Inbox → Areas → Projects → Output four-layer flow
 
-## Install
+## Quick start
+
+**Option 1: ask your agent to install**
 
 Tell your agent:
 
@@ -53,21 +83,35 @@ Tell your agent:
 Install this Skill: https://github.com/ivercurry99/knowledge-base-builder
 ```
 
-Or use the command:
+**Option 2: use the command**
 
 ```shell
 npx skills add ivercurry99/knowledge-base-builder
 ```
 
-## Usage
-
-After installing, say:
+**After install**, say:
 
 ```text
 help me build a knowledge base
 ```
 
-Then follow the guided questions. See [`examples/数据分析师示例.md`](examples/数据分析师示例.md) for what a "data analyst" knowledge base looks like when built with this Skill.
+Then follow the guided questions. See [`SKILL.md`](./SKILL.md) for parameters and [`examples/数据分析师示例.md`](examples/数据分析师示例.md) for a full example.
+
+## A full example
+
+What a "data analyst" knowledge base built with this skill looks like — see [`examples/数据分析师示例.md`](examples/数据分析师示例.md).
+
+Excerpt of the tree:
+
+```text
+xiaochen-kb/
+├── 00-Inbox/resources/  00-Inbox/ideas/  00-Inbox/to-digest/{domain}/
+├── 10-Areas/data-analysis/{1-business, 2-thinking, ...}
+├── 20-Projects/{ing, done, wait}
+├── 30-Output/{ing, done, wait}
+├── 40-Skills/README.md
+└── 90-xiaochen-brain/{README, profile, agents, init-prompt, file-tracking, backup}
+```
 
 ## Data & boundaries
 
@@ -94,7 +138,7 @@ The core of a knowledge base is "flow", not "storage":
 - Projects go into Projects, published work goes into Output
 - Each layer has a clear role and they don't mix
 
-The layering is inspired by Tiago Forte's PARA method (Projects / Areas / Resources / Archives) and the "second brain" idea; this project adapts the layers and flow rules independently and is not affiliated with Forte Labs.
+Full design rationale: [`references/design-principles.md`](references/design-principles.md).
 
 ## Development
 
@@ -103,6 +147,14 @@ The layering is inspired by Tiago Forte's PARA method (Projects / Areas / Resour
 python -m unittest discover -s tests -v
 ```
 
+CI runs the same suite on macOS / Windows / Linux in parallel — cross-platform parity is a hard requirement.
+
+## Acknowledgments & trademarks
+
+- The layering is inspired by Tiago Forte's **PARA method** (Projects / Areas / Resources / Archives) and the "**second brain**" idea. **This project adapts the layers and flow rules independently and is not affiliated with, endorsed by, or partnered with Tiago Forte or Forte Labs.** "Second Brain" and "PARA" are trademarks of their respective owners; this repository refers to them conceptually only and claims no rights.
+- The software shown in screenshots is **Obsidian** (`obsidian.md`). "Obsidian" and its logo are trademarks of Obsidian MD Inc.; this repository refers to it factually only, to show how the knowledge base opens, and claims no rights.
+- Thanks to everyone who has publicly shared their practices on "digital gardens" and "second brain" — this project is an engineered distillation of those conversations.
+
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) · Copyright © 2026 [ivercurry99](https://github.com/ivercurry99)

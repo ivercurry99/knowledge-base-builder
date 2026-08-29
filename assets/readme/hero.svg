@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <title>Knowledge Base Builder</title>
+  <desc>3 分钟搭好你的「第二大脑」：00-Inbox 到 10-Areas / 20-Projects / 30-Output 的四层流转，加上 40-Skills 工具箱与 90-大脑说明</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e1e1e"/>
+      <stop offset="1" stop-color="#26232c"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8a5cf5"/>
+      <stop offset="1" stop-color="#50a0fa"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="420" fill="url(#bg)"/>
+  <rect x="60" y="34" width="120" height="6" rx="3" fill="url(#accent)"/>
+
+  <!-- 标题 -->
+  <text x="60" y="96" font-size="46" font-weight="700" fill="#eaeaea">Knowledge Base Builder</text>
+  <text x="60" y="138" font-size="21" fill="#8a5cf5">3 分钟搭好你的「第二大脑」 · 通用 · 结构化 · 可复用</text>
+
+  <!-- 四层流转 -->
+  <g>
+    <!-- box 1 -->
+    <rect x="60" y="196" width="220" height="92" rx="14" fill="#2a2a2e" stroke="#50a0fa" stroke-width="2"/>
+    <text x="82" y="236" font-size="21" font-weight="700" fill="#50a0fa">00-Inbox</text>
+    <text x="82" y="264" font-size="18" fill="#c9c9cf">入口 · 新东西先丢这里</text>
+
+    <!-- arrow 1 -->
+    <line x1="296" y1="242" x2="336" y2="242" stroke="#6a6a72" stroke-width="2.5"/>
+    <polygon points="336,234 336,250 348,242" fill="#6a6a72"/>
+
+    <!-- box 2 -->
+    <rect x="360" y="196" width="220" height="92" rx="14" fill="#2a2a2e" stroke="#8a5cf5" stroke-width="2"/>
+    <text x="382" y="236" font-size="21" font-weight="700" fill="#8a5cf5">10-Areas</text>
+    <text x="382" y="264" font-size="18" fill="#c9c9cf">已掌握 · 按领域分</text>
+
+    <!-- arrow 2 -->
+    <line x1="596" y1="242" x2="636" y2="242" stroke="#6a6a72" stroke-width="2.5"/>
+    <polygon points="636,234 636,250 648,242" fill="#6a6a72"/>
+
+    <!-- box 3 -->
+    <rect x="660" y="196" width="220" height="92" rx="14" fill="#2a2a2e" stroke="#8a5cf5" stroke-width="2"/>
+    <text x="682" y="236" font-size="21" font-weight="700" fill="#8a5cf5">20-Projects</text>
+    <text x="682" y="264" font-size="18" fill="#c9c9cf">项目 · ing / done / wait</text>
+
+    <!-- arrow 3 -->
+    <line x1="896" y1="242" x2="936" y2="242" stroke="#6a6a72" stroke-width="2.5"/>
+    <polygon points="936,234 936,250 948,242" fill="#6a6a72"/>
+
+    <!-- box 4 -->
+    <rect x="960" y="196" width="180" height="92" rx="14" fill="#2a2a2e" stroke="#8a5cf5" stroke-width="2"/>
+    <text x="982" y="236" font-size="21" font-weight="700" fill="#8a5cf5">30-Output</text>
+    <text x="982" y="264" font-size="18" fill="#c9c9cf">输出 · 对外发布</text>
+  </g>
+
+  <!-- 底层支撑 -->
+  <g>
+    <rect x="60" y="318" width="440" height="64" rx="12" fill="#232327" stroke="#4a4a52" stroke-width="1.5"/>
+    <text x="84" y="344" font-size="19" font-weight="700" fill="#a9a9b3">40-Skills</text>
+    <text x="84" y="368" font-size="16" fill="#8f8f99">AI 协作工具箱</text>
+
+    <rect x="540" y="318" width="600" height="64" rx="12" fill="#232327" stroke="#4a4a52" stroke-width="1.5"/>
+    <text x="564" y="344" font-size="19" font-weight="700" fill="#a9a9b3">90-你的大脑说明</text>
+    <text x="564" y="368" font-size="16" fill="#8f8f99">个人档案 + AI 操作护栏 · 最高优先级入口</text>
+  </g>
+</svg>

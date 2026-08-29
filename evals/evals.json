@@ -1,0 +1,43 @@
+{
+  "skill_name": "knowledge-base-builder",
+  "evals": [
+    {
+      "id": 1,
+      "name": "build-analyst-kb",
+      "prompt": "帮我搭一个知识库，我是银行数据分析师，想深耕数据分析、AI工具、个人成长",
+      "expected_output": "生成 README.md、00-Inbox（资源/灵感/待沉淀）、10-Areas（数据分析/AI工具/个人成长，纯名称不带数字前缀）、20-Projects、30-Output、40-Skills/README.md、90-昵称的大脑说明/（README、个人档案、agents、初始化提示词、文件追踪、备份方案 6 个文件）",
+      "files": [],
+      "expectations": [
+        "生成根 README.md",
+        "00-Inbox 下含 资源、灵感、待沉淀 三个子目录",
+        "10-Areas 下含 数据分析、AI工具、个人成长（纯名称，无数字前缀）",
+        "20-Projects 和 30-Output 各含 ing/done/wait",
+        "40-Skills 下含 README.md hub",
+        "90-昵称的大脑说明 下含 个人档案.md、初始化提示词.md 等 6 个文件",
+        "个人档案.md 包含用户职业信息"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "detect-existing-structure",
+      "prompt": "在我已有的知识库目录里再帮我搭一次",
+      "expected_output": "检测到已有结构，询问「补充」还是「重建」，不直接覆盖",
+      "files": [],
+      "expectations": [
+        "不覆盖已有 README.md",
+        "先询问用户补充还是重建"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "incomplete-info-defaults",
+      "prompt": "帮我搭知识库（其余信息都不给）",
+      "expected_output": "用默认值（昵称=我、职业=知识工作者、领域=工作技能/个人成长/兴趣爱好）继续，不反复追问",
+      "files": [],
+      "expectations": [
+        "不因信息不全而卡住",
+        "使用默认领域生成 10-Areas"
+      ]
+    }
+  ]
+}

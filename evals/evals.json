@@ -1,5 +1,5 @@
 {
-  "skill_name": "knowledge-base-builder",
+  "skill_name": "obsidian-knowledge-builder",
   "evals": [
     {
       "id": 1,
@@ -37,6 +37,20 @@
       "expectations": [
         "不因信息不全而卡住",
         "使用默认领域生成 10-Areas"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "sync-learn-deposited",
+      "prompt": "同步学习沉淀的知识",
+      "expected_output": "扫描 00-Inbox/待沉淀/ 下未处理内容，逐个调用 learn-anything-fast（Compress 模式）消化成知识卡片，升格到 10-Areas 对应领域，原文标记 √ 并链接产出",
+      "files": [],
+      "expectations": [
+        "先扫描待沉淀目录找出未处理内容",
+        "调用学习技能消化（默认 Compress 模式）",
+        "知识卡片含一句话定义、例子、自测题",
+        "升格到 10-Areas 对应领域",
+        "原文标记 √ 并链接产出"
       ]
     }
   ]

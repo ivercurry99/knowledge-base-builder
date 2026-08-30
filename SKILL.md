@@ -1,17 +1,26 @@
 ---
-name: knowledge-base-builder
-description: 帮助用户从零搭建一个结构化的个人知识库（Inbox→Areas→Projects→Output 四层流转）。当用户说"帮我搭知识库""搭建第二大脑""建立知识库结构"等意图时使用。不要用于整理已有笔记、写单篇笔记、或日常知识管理咨询——那些是普通笔记工作，不需要从零搭建结构。
+name: obsidian-knowledge-builder
+description: 在 Obsidian 中搭建结构化知识库，并在内容沉淀后把待沉淀内容「学习消化」成可复用知识卡片。当用户说"帮我搭知识库""搭建第二大脑""建立知识库结构"时进入创建模式；当用户说"同步学习沉淀的知识""消化待沉淀"时进入同步学习模式。适配 Obsidian（wiki-link、frontmatter、callout、图谱）。不要用于整理已有笔记格式、写单篇笔记、或纯知识管理咨询。
 license: MIT
-compatibility: 骨架脚本仅使用 Python 3.10+ 标准库，跨 macOS/Windows/Linux；核心流程只依赖「读写文件、提问」两种通用能力，不依赖任何特定 Agent 宿主的专有功能，无 Python 时可按 references/file-templates.md 手工创建同样结构。
+compatibility: 骨架脚本仅用 Python 3.10+ 标准库，跨 macOS/Windows/Linux；核心流程只依赖「读写文件、提问」两种通用能力，不依赖特定 Agent 宿主的专有功能；输出为 Obsidian 原生格式（wiki-link、frontmatter、callout），无 Python 时可按 references/file-templates.md 手工创建。
 ---
 
-# knowledge-base-builder
+# obsidian-knowledge-builder
 
-把「搭知识库」这个重复任务变成一条稳定流程：先确认目标目录状态，再用脚本生成确定的结构，最后交给用户确认。不要在没有明确目标时强行搭建，也不要在已有结构上直接覆盖。
+把「搭知识库」和「消化沉淀」变成两条稳定流程。适配 Obsidian：生成的目录结构和产物都用 Obsidian 原生格式（`[[wiki-link]]`、frontmatter、callout），可直接在 Obsidian 里打开使用。
 
 下文 `<python>` 表示已确认可用、版本不低于 3.10 的 Python 解释器（macOS/Linux 通常为 `python3`，Windows 通常为 `py -3`）。
 
-## 开始前：检查已有结构
+## 先选模式
+
+| 模式 | 触发 | 路径 |
+|------|------|------|
+| 创建 | 用户说「帮我搭知识库」「搭建第二大脑」「建立知识库结构」 | 收集信息 → 生成骨架 → 交付确认 |
+| 同步学习 | 用户说「同步学习沉淀的知识」「消化待沉淀」 | 扫描待沉淀 → 学习消化 → 升格 Areas → 标记 |
+
+## 模式一：创建
+
+### 开始前：检查已有结构
 
 用脚本检测目标目录，静默完成，检测到就报告：
 
@@ -21,8 +30,6 @@ compatibility: 骨架脚本仅使用 Python 3.10+ 标准库，跨 macOS/Windows/
 
 - **未检测到结构** → 进入「创建」流程。
 - **已存在结构** → 先询问用户「在现有基础上补充」还是「重新搭建」，不要直接覆盖。重新搭建必须先获得授权。
-
-## 创建流程
 
 ### 第 1 步：收集信息（不阻塞）
 
@@ -74,12 +81,41 @@ compatibility: 骨架脚本仅使用 Python 3.10+ 标准库，跨 macOS/Windows/
 
 报告生成的目录树和用法，并询问是否需要调整领域分类或结构。
 
+## 模式二：同步学习沉淀
+
+用户把原始材料丢进 `00-Inbox/待沉淀/` 后，说「同步学习沉淀的知识」，就启动这个流程：把待沉淀内容「学习消化」成可复用知识卡片，升格到 `10-Areas/`。
+
+### 第 1 步：扫描待沉淀
+
+列出 `00-Inbox/待沉淀/` 下所有未处理内容（文件名末尾没有 √ 的），按领域分组展示清单。
+
+### 第 2 步：确认范围
+
+让用户确认要学哪些（全部 / 指定几个 / 按优先级）。信息不全时默认「全部」，不阻塞。
+
+### 第 3 步：逐个学习消化
+
+对每个内容，调用 `learn-anything-fast` 技能学习（宿主没有该技能时，用等价学习循环）。默认 Compress 模式，把材料压缩成一张知识卡片。格式见 [references/learning-sync.md](references/learning-sync.md)。
+
+### 第 4 步：升格到 Areas
+
+学习产出的知识卡片 → 写入 `10-Areas/{领域}/` 对应子领域。领域归属不确定时问用户，不擅自定。
+
+### 第 5 步：标记来源
+
+原文文件名末尾加 √，并在原文顶部用 `[[wiki-link]]` 链接到 Area 产出，避免重复学习。
+
+### 第 6 步：汇报
+
+汇报：学了什么、产出在哪、原文已标记、还剩多少未学。
+
 ## 资源导航
 
 | 需要什么 | 读哪里 |
 |---------|--------|
 | 四层流转的设计原理 | [references/design-principles.md](references/design-principles.md) |
 | 目录结构与文件模板 | [references/file-templates.md](references/file-templates.md) |
+| 同步学习的卡片格式与调用 | [references/learning-sync.md](references/learning-sync.md) |
 | 一个完整示例 | [examples/数据分析师示例.md](examples/数据分析师示例.md) |
 
 ## 稳定与恢复
@@ -90,6 +126,12 @@ compatibility: 骨架脚本仅使用 Python 3.10+ 标准库，跨 macOS/Windows/
 
 ## 完成标准
 
+**创建模式**：
 - 骨架完整生成，脚本或手工创建结果与 [references/file-templates.md](references/file-templates.md) 一致；
 - 8 个文件已按用户信息定制；
 - 用户已确认领域分类和结构（或使用默认值）。
+
+**同步学习模式**：
+- 待沉淀内容已逐个学习消化成知识卡片；
+- 卡片满足升格三标准（能讲清楚 / 有例子 / 有自测题）；
+- 原文已标记 √ 并链接到 Area 产出。

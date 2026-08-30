@@ -4,21 +4,21 @@
 
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-8a5cf5"></a>
-  <a href="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/ivercurry99/obsidian-knowledge-builder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ivercurry99/obsidian-knowledge-builder/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-50a0fa?logo=python&logoColor=white">
   <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-4a4a52">
   <img alt="Network" src="https://img.shields.io/badge/network-not%20required-2ea043">
-  <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivercurry99/knowledge-base-builder?color=50a0fa">
-  <img alt="Stars" src="https://img.shields.io/github/stars/ivercurry99/knowledge-base-builder?style=social">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivercurry99/obsidian-knowledge-builder?color=50a0fa">
+  <img alt="Stars" src="https://img.shields.io/github/stars/ivercurry99/obsidian-knowledge-builder?style=social">
 </p>
 
 <p align="center"><b>English</b>: <a href="./README.en.md">README.en.md</a> · <b>中文</b>: README.md</p>
 
 ---
 
-知识库搭建器（Knowledge Base Builder）是一个本地知识整理脚本，按 PARA 方法生成收件箱、领域、项目、产出四层目录。核心流程只有文件读写和提问，编程助手具备这两项能力即可执行。
+知识库搭建器（Obsidian Knowledge Builder）是一个**适配 Obsidian 的 Agent 通用 Skill**：引导你 3 分钟搭出一个结构化的「第二大脑」知识库，并在内容沉淀后帮你把待沉淀内容「学习消化」成可复用知识卡片。任何具备「读写文件 + 提问」能力的 Agent 都能执行。
 
-信息没有填写完整的项目，脚本会给出默认假设并继续生成对应文件；目录已存在时不会覆盖原有内容，会提示选择「补充」或「重建」。
+你不用懂任何知识管理理论，说一句「帮我搭知识库」，它就会问你几个问题，然后用脚本确定地生成一套结构——**不会漏目录、不会重复建，信息没想好也有默认值，不卡你**。之后说一句「同步学习沉淀的知识」，它就会调用学习技能，把待沉淀内容消化成知识卡片，升格到你的领域知识库里。
 
 ## 目录
 
@@ -80,13 +80,13 @@
 告诉你的 Agent：
 
 ```text
-帮我安装「https://github.com/ivercurry99/knowledge-base-builder」这个 Skill。
+帮我安装「https://github.com/ivercurry99/obsidian-knowledge-builder」这个 Skill。
 ```
 
 **方式 2：用命令安装**
 
 ```shell
-npx skills add ivercurry99/knowledge-base-builder
+npx skills add ivercurry99/obsidian-knowledge-builder
 ```
 
 **安装后**，对你的 Agent 说：
@@ -95,7 +95,15 @@ npx skills add ivercurry99/knowledge-base-builder
 帮我搭知识库
 ```
 
-然后跟着引导回答几个问题即可。详细参数见 [`SKILL.md`](./SKILL.md)，完整示例见 [`examples/数据分析师示例.md`](examples/数据分析师示例.md)。
+然后跟着引导回答几个问题即可。
+
+**搭好后，日常沉淀这么用**：
+
+```text
+同步学习沉淀的知识
+```
+
+它会把 `00-Inbox/待沉淀/` 里的原始材料逐个「学习消化」成知识卡片（调用 learn-anything-fast），升格到 `10-Areas/`。详细参数见 [`SKILL.md`](./SKILL.md)，完整示例见 [`examples/数据分析师示例.md`](examples/数据分析师示例.md)。
 
 ## 一个完整示例
 

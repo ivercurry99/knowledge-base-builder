@@ -4,21 +4,21 @@
 
 <p align="center">
   <a href="./LICENSE"><img alt="License" src="https://img.shields.io/badge/license-MIT-8a5cf5"></a>
-  <a href="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ivercurry99/knowledge-base-builder/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/ivercurry99/obsidian-knowledge-builder/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/ivercurry99/obsidian-knowledge-builder/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-50a0fa?logo=python&logoColor=white">
   <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-4a4a52">
   <img alt="Network" src="https://img.shields.io/badge/network-not%20required-2ea043">
-  <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivercurry99/knowledge-base-builder?color=50a0fa">
-  <img alt="Stars" src="https://img.shields.io/github/stars/ivercurry99/knowledge-base-builder?style=social">
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/ivercurry99/obsidian-knowledge-builder?color=50a0fa">
+  <img alt="Stars" src="https://img.shields.io/github/stars/ivercurry99/obsidian-knowledge-builder?style=social">
 </p>
 
 <p align="center"><b>English</b>: README.en.md · <b>中文</b>: <a href="./README.md">README.md</a></p>
 
 ---
 
-Knowledge Base Builder is an **agent-agnostic Skill** that guides you to scaffold a structured "second brain" knowledge base in about 3 minutes. Any agent with "read/write files + ask questions" capabilities can run it.
+Knowledge Base Builder is an **Obsidian-adapted, agent-agnostic Skill** that guides you to scaffold a structured "second brain" knowledge base in about 3 minutes, then turns deposited material into reusable knowledge cards. Any agent with "read/write files + ask questions" capabilities can run it.
 
-You don't need any knowledge-management theory. Say "help me build a knowledge base", answer a few questions, and it generates a structure deterministically with a script — **no missing folders, no duplicates, sensible defaults when you don't have an answer yet**.
+You don't need any knowledge-management theory. Say "help me build a knowledge base", answer a few questions, and it generates a structure deterministically with a script — **no missing folders, no duplicates, sensible defaults when you don't have an answer yet**. Later say "sync-learn my deposited knowledge" and it digests the material in `00-Inbox/待沉淀/` into knowledge cards and promotes them into `10-Areas/`.
 
 ## Table of contents
 
@@ -80,13 +80,13 @@ The brain folder (`90-your-brain/`) comes with 6 files at once: `README` (manual
 Tell your agent:
 
 ```text
-Install this Skill: https://github.com/ivercurry99/knowledge-base-builder
+Install this Skill: https://github.com/ivercurry99/obsidian-knowledge-builder
 ```
 
 **Option 2: use the command**
 
 ```shell
-npx skills add ivercurry99/knowledge-base-builder
+npx skills add ivercurry99/obsidian-knowledge-builder
 ```
 
 **After install**, say:
@@ -95,7 +95,13 @@ npx skills add ivercurry99/knowledge-base-builder
 help me build a knowledge base
 ```
 
-Then follow the guided questions. See [`SKILL.md`](./SKILL.md) for parameters and [`examples/数据分析师示例.md`](examples/数据分析师示例.md) for a full example.
+Then follow the guided questions. To digest deposited material, say:
+
+```text
+sync-learn my deposited knowledge
+```
+
+It digests each item in `00-Inbox/待沉淀/` into a knowledge card (via a learning skill) and promotes it into `10-Areas/`. See [`SKILL.md`](./SKILL.md) for parameters and [`examples/数据分析师示例.md`](examples/数据分析师示例.md) for a full example.
 
 ## A full example
 
